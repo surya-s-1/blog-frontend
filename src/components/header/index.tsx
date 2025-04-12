@@ -30,7 +30,7 @@ export default function Header() {
             <div className='relative' ref={dropdownRef}>
                 <button
                     onClick={() => setDropdownOpen((prev) => !prev)}
-                    className='flex items-center bg-transparent p-0 rounded-full cursor-pointer p-4'
+                    className='flex items-center bg-transparent rounded-full cursor-pointer p-4'
                 >
                     <img src={PlaceholderProfileIcon.src} width={36} alt='Profile' className='rounded-full' />
                 </button>

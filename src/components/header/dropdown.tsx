@@ -31,7 +31,7 @@ export default function HeaderDropdown() {
     const dispatch = useDispatch()
 
     return(
-        <div className='absolute right-0 mt-4 w-max bg-white rounded-lg shadow-lg z-20 flex flex-col'>
+        <div className='absolute right-0 w-max bg-white rounded-lg shadow-lg z-20 flex flex-col'>
             <DropdownEl 
                 icon={<img src={PlaceholderProfileIcon.src} width={24} alt='Profile' className='rounded-full' />}
                 label='Profile'
