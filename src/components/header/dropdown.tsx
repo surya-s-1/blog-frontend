@@ -17,7 +17,7 @@ interface ElProps {
 function DropdownEl({icon, label, func, type = 'reg'}: ElProps) {
     return (
         <button 
-            className={`flex flex-row gap-4 cursor-pointer px-8 py-4 text-left hover:bg-secondary-bg ${type === 'warn' ? 'text-warn-text' : type === 'danger' ? 'text-danger-text' : ''}`}
+            className={`flex flex-row gap-4 cursor-pointer px-8 py-4 text-left hover:bg-secondary-bg ${type === 'warn' ? 'text-warn-fg' : type === 'danger' ? 'text-danger-fg' : 'text-default-fg'}`}
             onClick={() => func()}
         >
             {icon}
@@ -31,7 +31,7 @@ export default function HeaderDropdown() {
     const dispatch = useDispatch()
 
     return(
-        <div className='absolute right-0 w-max bg-background rounded-lg shadow-lg z-20 flex flex-col'>
+        <div className='absolute right-0 w-max bg-default-bg rounded-lg shadow-lg z-20 flex flex-col'>
             <DropdownEl 
                 icon={<img src={PlaceholderProfileIcon.src} width={24} alt='Profile' className='rounded-full' />}
                 label='Profile'
