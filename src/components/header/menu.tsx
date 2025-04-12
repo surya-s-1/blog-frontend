@@ -8,10 +8,8 @@ function Tab({ icon, href }: { icon: any, href: string }) {
     const path = usePathname()
 
     return (
-        <div className={`flex flex-col items-center justify-center px-6 cursor-pointer text-black ${href === path && 'border-b-4'}`}>
-            <div className="flex items-center justify-center">
-                {icon}
-            </div>
+        <div className={`flex flex-col items-center justify-center px-6 cursor-pointer text-black ${href === path && 'border-b-4 dark:border-white'}`}>
+            {icon}
         </div>
     )
 }
@@ -40,7 +38,7 @@ export default function MiddleSection() {
                     <Tab
                         icon={
                             <Link href='/home'>
-                                <IoHome size={24} />
+                                <IoHome className='dark:text-white' size={24} />
                             </Link>
                         }
                         href='/'
@@ -48,7 +46,7 @@ export default function MiddleSection() {
                     <Tab
                         icon={
                             <button className='cursor-pointer' onClick={() => setSearchMode(true)}>
-                                <IoSearch size={24} />
+                                <IoSearch className='dark:text-white' size={24} />
                             </button>
                         }
                         href='/search'
