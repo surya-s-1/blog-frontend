@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
-import appReducer from './slices/appSlice'
+import appReducer, { appSlice } from './slices/appSlice'
 
 const makeStore = () =>
   configureStore({
     reducer: {
-      app: appReducer,
+      [appSlice.name]: appReducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
   })
