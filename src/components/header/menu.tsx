@@ -37,23 +37,23 @@ export default function MiddleSection() {
                 <div className='flex flex-row w-full h-full'>
                     <Tab
                         icon={
-                            <Link href='/home'>
-                                <IoHome className='dark:text-white' size={24} />
+                            <Link className='h-full flex flex-col justify-center' href='/'>
+                                <IoHome className='text-primary-text' size={24} />
                             </Link>
                         }
                         href='/'
                     />
                     <Tab
                         icon={
-                            <button className='cursor-pointer' onClick={() => setSearchMode(true)}>
-                                <IoSearch className='dark:text-white' size={24} />
+                            <button className='cursor-pointer h-full' onClick={() => setSearchMode(true)}>
+                                <IoSearch className='text-primary-text' size={24} />
                             </button>
                         }
                         href='/search'
                     />
                 </div>
             ) : (
-                <div className='flex items-center w-full min-h-full rounded-md px-4 shadow-sm bg-gray-100'>
+                <div className='flex items-center w-full h-full rounded-md px-4 shadow-sm bg-secondary-bg text-secondary-text'>
                     <input
                         type='text'
                         placeholder='Search...'
@@ -67,13 +67,13 @@ export default function MiddleSection() {
                             setSearchMode(false)
                             setQuery('')
                         }}
-                        className='text-black/50 ml-2 cursor-pointer'
+                        className='text-primary-text/50 ml-2 h-full cursor-pointer'
                     >
                         <IoClose size={24} />
                     </button>
                     <button
                         onClick={handleSearch}
-                        className='text-black ml-1 cursor-pointer'
+                        className='text-primary-text ml-1 h-full cursor-pointer'
                     >
                         <IoSearch size={24} />
                     </button>

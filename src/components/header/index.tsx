@@ -24,7 +24,7 @@ export default function Header() {
       }, [theme])
 
     return (
-        <header className='top-0 sticky z-10 bg-white dark:bg-[#292929] backdrop-blur-sm shadow-md h-16 flex flex-row justify-between items-center'>
+        <header className='top-0 sticky z-10 bg-background backdrop-blur-sm shadow-md h-16 flex flex-row justify-between items-center'>
             {theme === 'light' ? (
                 <img className='mx-4' src={LightLogo.src} width={72} />
             ) : (
