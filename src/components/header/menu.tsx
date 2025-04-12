@@ -8,7 +8,7 @@ function Tab({ icon, href }: { icon: any, href: string }) {
     const path = usePathname()
 
     return (
-        <div className={`flex flex-col items-center justify-center px-6 cursor-pointer text-default-fg ${href === path && 'border-b-4 dark:border-default-bg'}`}>
+        <div className={`flex flex-col items-center justify-center px-6 cursor-pointer text-default-fg ${href === path && 'border-b-4 border-default-fg'}`}>
             {icon}
         </div>
     )
