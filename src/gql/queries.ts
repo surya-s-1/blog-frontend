@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const GET_HOME_FEED = gql`
-    query GetHomeFeed($limit: Int, $cursor: String) {
-        getHomeFeed(limit: $limi, cursor: $cursor) {
+    query GetHomeFeed($limit: Int!, $cursor: DateTime) {
+        getHomeFeed(limit: $limit, cursor: $cursor) {
             posts {
                 postId
                 content
