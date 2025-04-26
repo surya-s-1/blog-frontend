@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import LoadingTubeSpinner from '../../public/loading-tube-spinner.svg'
+
+import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_HOME_FEED } from '@/gql/queries'
 
 import Header from '@/components/header'
+import Frame from '@/components/container/Frame'
 import PostContainer from '@/components/container/PostContainer'
+
 import { Post } from '@/components/interfaces/Post'
 
-import LoadingTubeSpinner from '../../public/loading-tube-spinner.svg'
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 
 export default function Home() {
@@ -44,10 +47,16 @@ export default function Home() {
   return (
     <div className='min-h-screen min-w-screen bg-primary-bg'>
       <Header />
-      <PostContainer posts={posts} />
-      <div ref={loadMoreRef} className='h-fit'>
-        {(nextCursor || loading) && <img src={LoadingTubeSpinner.src} width={40}/>}
-      </div>
+      <Frame
+        middle={
+          <>
+          <PostContainer posts={posts} />
+          <div ref={loadMoreRef} className='h-fit'>
+            {(nextCursor || loading) && <img src={LoadingTubeSpinner.src} width={40}/>}
+          </div>
+          </>
+        }
+      />
     </div>
   )
 }
