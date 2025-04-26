@@ -1,6 +1,6 @@
 import { Ref } from 'react'
 
-import PostCard from '@/components/PostCard'
+import PostCard from '@/components/post/PostCard'
 import TubeSpinnerLoader from '@/components/TubeSpinnerLoader'
 import { Post } from '@/components/interfaces/Post'
 

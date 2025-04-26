@@ -1,7 +1,7 @@
 import { InferGetServerSidePropsType, GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import TubeSpinnerLoader from '@/components/TubeSpinnerLoader'
-import PostCard from '@/components/PostCard'
+import PostCard from '@/components/post/PostCard'
 import { Post } from '@/components/interfaces/Post'
 import { GET_POST } from '@/gql/queries'
 import { ssrApolloClient } from '../../../apollo-client'

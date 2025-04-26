@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { OwnerDetails } from '@/components/interfaces/Post'
 import { formatDate } from '@/utility'
 
-export default function Owner({ dp, username, firstName, middleName = null, lastName, timestamp, display }: OwnerDetails) {
+export default function Metadata({ dp, username, firstName, middleName = null, lastName, timestamp, display }: OwnerDetails) {
     const long = display === 'long'
 
     return(

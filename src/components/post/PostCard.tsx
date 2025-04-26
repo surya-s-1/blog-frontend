@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
 
-import Owner from '@/components/Owner'
+import Metadata from '@/components/post/Metadata'
 import { PostCardInterface } from '@/components/interfaces/Post'
 
 export default function PostCard({ post, display }: PostCardInterface) {
@@ -14,7 +14,7 @@ export default function PostCard({ post, display }: PostCardInterface) {
                 className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 cursor-pointer flex flex-col gap-1'
                 onClick={() => { router.push(`post/${post.postId}`) }}
             >
-                <Owner
+                <Metadata
                     firstName={post.firstName}
                     lastName={post.lastName}
                     dp={post.dp}
@@ -28,7 +28,7 @@ export default function PostCard({ post, display }: PostCardInterface) {
     } else {
         return(
             <div className='w-full h-fit bg-default-bg rounded-lg p-1 m-2 flex flex-col gap-1'>
-                <Owner 
+                <Metadata 
                     firstName={post.firstName}
                     middleName={post.middleName}
                     lastName={post.lastName}
