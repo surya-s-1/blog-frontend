@@ -1,8 +1,7 @@
-import LoadingTubeSpinner from '../../../public/loading-tube-spinner.svg'
-
 import { Ref } from 'react'
 
 import PostCard from '@/components/PostCard'
+import TubeSpinnerLoader from '@/components/TubeSpinnerLoader'
 import { Post } from '@/components/interfaces/Post'
 
 interface PostContainerInterface {
@@ -18,7 +17,7 @@ export default function PostContainer({ posts, showLoader, loadMoreRef }: PostCo
                 return <PostCard key={post.postId} post={post} display='short' />
             })}
             <div ref={loadMoreRef} className='flex flex-row w-full justify-center h-fit'>
-                {showLoader && <img src={LoadingTubeSpinner.src} width={40}/>}
+                {showLoader && <TubeSpinnerLoader width={40} />}
             </div>
         </div>
     )

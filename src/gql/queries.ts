@@ -20,3 +20,21 @@ export const GET_HOME_FEED = gql`
         }
     }
 `
+
+export const GET_POST = gql`
+    query GetPost($postId: String!) {
+        getPost(postId: $postId) {
+            postId
+            content
+            tags
+            createdAt
+            public
+            userId
+            username
+            firstName
+            middleName
+            lastName
+            dp
+        }
+    }
+`
