@@ -56,7 +56,7 @@ export default function PostCard({ post, display }: PostCardInterface) {
         )
     } else {
         return (
-            <div className='w-full h-fit bg-default-bg rounded-lg p-1 m-2 flex flex-col gap-1'>
+            <div className='w-full h-fit bg-default-bg rounded-lg p-4 pb-6 m-2 flex flex-col gap-1'>
                 <Metadata
                     firstName={post.firstName}
                     middleName={post.middleName}

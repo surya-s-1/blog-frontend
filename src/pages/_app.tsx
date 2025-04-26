@@ -7,6 +7,7 @@ import { ApolloProvider } from '@apollo/client'
 
 import { client } from '@/../apollo-client'
 import { wrapper } from '@/store'
+import Header from '@/components/header'
 import TubeSpinnerLoader from '@/components/TubeSpinnerLoader'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -37,6 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <div className='fixed bg-default-bg rounded-full shadow-[0_4px_8px_rgba(0,0,0,0.5)] p-2 top-12 left-1/2 transform -translate-x-1/2 z-50'>
             <TubeSpinnerLoader width={36} />
           </div>}
+        <Header />
         <Component {...pageProps} />
       </ApolloProvider>
     </Provider>

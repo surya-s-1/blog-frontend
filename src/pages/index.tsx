@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_HOME_FEED } from '@/gql/queries'
 
-import Header from '@/components/header'
 import Frame from '@/components/container/Frame'
 import PostContainer from '@/components/container/PostContainer'
 import { Post } from '@/components/interfaces/Post'
@@ -42,11 +41,8 @@ export default function Home() {
   const [loadMoreRef] = useInfiniteScroll(handleLoadMore, nextCursor, loading)
 
   return (
-    <div className='min-h-screen min-w-screen bg-primary-bg'>
-      <Header />
-      <Frame
-        middle={<PostContainer posts={posts} showLoader={loading || !!nextCursor} loadMoreRef={loadMoreRef} />}
-      />
-    </div>
+    <Frame
+      middle={<PostContainer posts={posts} showLoader={loading || !!nextCursor} loadMoreRef={loadMoreRef} />}
+    />
   )
 }

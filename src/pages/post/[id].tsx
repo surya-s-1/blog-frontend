@@ -5,6 +5,7 @@ import PostCard from '@/components/post/PostCard'
 import { Post } from '@/components/interfaces/Post'
 import { GET_POST } from '@/gql/queries'
 import { ssrApolloClient } from '../../../apollo-client'
+import Frame from '@/components/container/Frame'
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     try {
@@ -43,15 +44,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 export default function PostDetail({ post, error }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     if (post) {
         return(
-            <div className='w-[70%] ml-[15%]'>
-                <PostCard post={post} display='long' />
-            </div>
+            <Frame middle={<PostCard post={post} display='long' />} width={{ left: 20, middle: 60, right: 20}} />
         )
     } else {
         return(
-            <div className='text-danger-fg'>
-                {error}
-            </div>
+            <Frame middle={<div className='text-danger-fg'>{error}</div>} />
         )
     }
 }
