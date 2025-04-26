@@ -18,12 +18,18 @@ export interface PostCardInterface {
     display: 'short' | 'long'
 }
 
-export interface OwnerDetails {
+export interface MetadataInterface {
     dp: string | null
     username: string | null
     firstName: string | null
     middleName?: string | null
     lastName: string | null
     timestamp: string | Date | number
+    publicVisible?: boolean
+    display: 'short' | 'long'
+}
+
+export interface TagsInterface {
+    tags: string[]
     display: 'short' | 'long'
 }

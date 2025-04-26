@@ -2,10 +2,10 @@ import ProfileIcon from '@/../public/profile.svg'
 
 import Link from 'next/link'
 
-import { OwnerDetails } from '@/components/interfaces/Post'
+import { MetadataInterface } from '@/components/interfaces/Post'
 import { formatDate } from '@/utility'
 
-export default function Metadata({ dp, username, firstName, middleName = null, lastName, timestamp, display }: OwnerDetails) {
+export default function Metadata({ dp, username, firstName, middleName = null, lastName, timestamp, display, publicVisible = true }: MetadataInterface) {
     const long = display === 'long'
 
     return(
@@ -22,7 +22,7 @@ export default function Metadata({ dp, username, firstName, middleName = null, l
                     <strong>{firstName} {(long && middleName) ? middleName : ''} {lastName}</strong>
                 </div>
                 <div className='text-xs text-secondary-fg/50 font-semibold'>
-                    {formatDate(timestamp, long ? 'long' : 'short')}
+                    {formatDate(timestamp, long ? 'long' : 'short')} · { publicVisible ? 'Public' : 'Private' }
                 </div>
             </div>
         </Link>
