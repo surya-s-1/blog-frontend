@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { IoHome, IoSearch, IoClose } from 'react-icons/io5'
 
 function Tab({ icon, href }: { icon: any, href: string }) {
-    const path = usePathname()
+    const { pathname: path } = useRouter()
 
     return (
         <div className={`flex flex-col items-center justify-center px-6 cursor-pointer text-default-fg ${href === path && 'border-b-4 border-default-fg'}`}>
@@ -21,7 +21,10 @@ export default function MiddleSection() {
 
     const handleSearch = () => {
         if (query.trim() !== '') {
-            router.push(`/search?q=${encodeURIComponent(query.trim())}`)
+            router.push({
+                pathname: '/search',
+                query: { q: query.trim() }
+            })
         }
     }
 

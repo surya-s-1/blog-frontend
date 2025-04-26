@@ -11,7 +11,7 @@ export default function Metadata({ dp, username, firstName, middleName = null, l
     return(
         <Link 
             className='flex flex-row justify-start items-center w-fit gap-2 p-2 pb-1' 
-            href={`user/${username}`}
+            href={`/user/${username}`}
             onClick={e => e.stopPropagation()}
         >
             <div>

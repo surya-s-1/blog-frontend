@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import Metadata from '@/components/post/Metadata'
@@ -16,7 +16,7 @@ function Tags({ tags, display }: TagsInterface) {
                     <Link
                         key={tag}
                         className='text-xs bg-secondary-bg text-secondary-fg rounded-sm p-1 px-2'
-                        href={`search?tag=${encodeURIComponent(tag)}`}
+                        href={`/search?tag=${encodeURIComponent(tag)}`}
                         onClick={e => e.stopPropagation()}
                     >
                         {tag}
@@ -40,7 +40,7 @@ export default function PostCard({ post, display }: PostCardInterface) {
         return (
             <div
                 className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 cursor-pointer flex flex-col gap-1'
-                onClick={() => { router.push(`post/${post.postId}`) }}
+                onClick={() => { router.push(`/post/${post.postId}`) }}
             >
                 <Metadata
                     firstName={post.firstName}
