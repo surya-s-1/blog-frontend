@@ -7,8 +7,12 @@ import PostContainer from '@/components/container/PostContainer'
 import { Post } from '@/components/interfaces/Post'
 
 import LoadingTubeSpinner from '../../public/loading-tube-spinner.svg'
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 
 export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([])
+  const [nextCursor, setNextCursor] = useState<string | null>(null)
+
   const { data, error, loading, fetchMore } = useQuery(GET_HOME_FEED, {
     variables: { limit: 5, cursor: null }
   })
@@ -16,11 +20,6 @@ export default function Home() {
   if (error) {
     console.error(error)
   }
-
-  const [posts, setPosts] = useState<Post[]>([])
-  const [nextCursor, setNextCursor] = useState<string>()
-
-  const loader = useRef(null)
 
   useEffect(() => {
     if (data?.getHomeFeed) {
@@ -40,28 +39,13 @@ export default function Home() {
     setNextCursor(more.data.getHomeFeed.nextCursor)
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !loading) {
-          handleLoadMore()
-        }
-      },
-      { threshold: 1 }
-    )
-
-    if (loader.current) observer.observe(loader.current)
-
-    return () => {
-      if (loader.current) observer.unobserve(loader.current)
-    }
-  }, [loader.current, nextCursor, loading])
+  const [loadMoreRef] = useInfiniteScroll(handleLoadMore, nextCursor, loading)
 
   return (
     <div className='min-h-screen min-w-screen bg-primary-bg'>
       <Header />
       <PostContainer posts={posts} />
-      <div ref={loader} className='h-fit'>
+      <div ref={loadMoreRef} className='h-fit'>
         {(nextCursor || loading) && <img src={LoadingTubeSpinner.src} width={40}/>}
       </div>
     </div>
