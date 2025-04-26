@@ -1,40 +1,25 @@
-import Link from 'next/link'
-import ProfileIcon from '../../../public/profile.svg'
+import LoadingTubeSpinner from '../../../public/loading-tube-spinner.svg'
 
-import { Post } from '../interfaces/Post'
-import { useRouter } from 'next/navigation'
+import { Ref } from 'react'
+
+import PostCard from '@/components/PostCard'
+import { Post } from '@/components/interfaces/Post'
 
 interface PostContainerInterface {
     posts: Post[]
+    showLoader: boolean
+    loadMoreRef: Ref<HTMLDivElement | null>
 }
 
-export default function PostContainer({ posts }: PostContainerInterface) {
-    const router = useRouter()
-
+export default function PostContainer({ posts, showLoader, loadMoreRef }: PostContainerInterface) {
     return(
         <div>
             {posts.map((post) => {
-                return(
-                    <div 
-                        key={post.postId} 
-                        className='w-full h-fit bg-default-bg rounded-lg p-1 m-2 cursor-pointer'
-                        onClick={() => { router.push(`post/${post.postId}`) }}
-                    >
-                        <Link 
-                            className='flex flex-row justify-start w-fit gap-2 p-2' 
-                            href={`user/${post.username}`}
-                            onClick={e => e.stopPropagation()}
-                        >
-                            {!post.dp && <img src={ProfileIcon.src} width={20} alt='Profile' className='rounded-full' />}
-                            <span className='text-sm'><strong>{post.firstName} {post.lastName}</strong></span>
-                        </Link>
-
-                        <div className='mt-1 p-2'>
-                            {post.content}
-                        </div>
-                    </div>
-                )
+                return <PostCard key={post.postId} post={post} display='short' />
             })}
+            <div ref={loadMoreRef} className='flex flex-row w-full justify-center h-fit'>
+                {showLoader && <img src={LoadingTubeSpinner.src} width={40}/>}
+            </div>
         </div>
     )
 }

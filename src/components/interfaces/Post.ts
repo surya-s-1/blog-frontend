@@ -12,3 +12,16 @@ export interface Post {
     dp: string | null,
     __typename?: string | null
 }
+
+export interface PostCardInterface {
+    post: Post
+    display: 'short' | 'long'
+}
+
+export interface OwnerDetails {
+    dp: string | null
+    username: string | null
+    firstName: string | null
+    lastName: string | null
+    display: 'short' | 'long'
+}
