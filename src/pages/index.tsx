@@ -51,7 +51,7 @@ export default function Home() {
         middle={
           <>
           <PostContainer posts={posts} />
-          <div ref={loadMoreRef} className='h-fit'>
+          <div ref={loadMoreRef} className='flex flex-row w-full justify-center h-fit'>
             {(nextCursor || loading) && <img src={LoadingTubeSpinner.src} width={40}/>}
           </div>
           </>
