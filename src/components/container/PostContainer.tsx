@@ -17,7 +17,7 @@ export default function PostContainer({ posts }: PostContainerInterface) {
                 return(
                     <div 
                         key={post.postId} 
-                        className='w-full h-fit bg-white rounded-lg p-1 m-2 cursor-pointer'
+                        className='w-full h-fit bg-default-bg rounded-lg p-1 m-2 cursor-pointer'
                         onClick={() => { router.push(`post/${post.postId}`) }}
                     >
                         <Link 
