@@ -22,6 +22,7 @@ export interface OwnerDetails {
     dp: string | null
     username: string | null
     firstName: string | null
+    middleName?: string | null
     lastName: string | null
     display: 'short' | 'long'
 }
