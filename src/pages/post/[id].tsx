@@ -49,7 +49,7 @@ export default function PostDetail({ post, error }: InferGetServerSidePropsType<
         )
     } else {
         return(
-            <div className='bg-danger-bg text-danger-fg'>
+            <div className='text-danger-fg'>
                 {error}
             </div>
         )

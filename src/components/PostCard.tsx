@@ -11,7 +11,7 @@ export default function PostCard({ post, display }: PostCardInterface) {
         
         return(
             <div
-                className='w-full h-fit bg-default-bg rounded-lg p-1 m-2 cursor-pointer'
+                className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 cursor-pointer flex flex-col gap-1'
                 onClick={() => { router.push(`post/${post.postId}`) }}
             >
                 <Owner
@@ -20,15 +20,14 @@ export default function PostCard({ post, display }: PostCardInterface) {
                     dp={post.dp}
                     username={post.username}
                     display={display}
+                    timestamp={post.createdAt}
                 />
-                <div className='mt-1 p-2'>
-                    {post.content.slice(0, 300).trim().concat(concatRequired ? '...' : '')}
-                </div>
+                <p className='p-2'>{post.content.slice(0, 300).trim().concat(concatRequired ? '...' : '')}</p>
             </div>
         )
     } else {
         return(
-            <div className='w-full h-fit bg-default-bg rounded-lg p-1 m-2'>
+            <div className='w-full h-fit bg-default-bg rounded-lg p-1 m-2 flex flex-col gap-1'>
                 <Owner 
                     firstName={post.firstName}
                     middleName={post.middleName}
@@ -36,10 +35,9 @@ export default function PostCard({ post, display }: PostCardInterface) {
                     dp={post.dp}
                     username={post.username}
                     display={display}
+                    timestamp={post.createdAt}
                 />
-                <div className='mt-1 p-2'>
-                    {post.content}
-                </div>
+                <div className='p-2'>{post.content}</div>
             </div>
         )
     }

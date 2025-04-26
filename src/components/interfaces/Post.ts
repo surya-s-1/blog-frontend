@@ -24,5 +24,6 @@ export interface OwnerDetails {
     firstName: string | null
     middleName?: string | null
     lastName: string | null
+    timestamp: string | Date | number
     display: 'short' | 'long'
 }
