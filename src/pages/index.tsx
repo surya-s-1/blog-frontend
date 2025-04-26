@@ -6,6 +6,8 @@ import Header from '@/components/header'
 import PostContainer from '@/components/container/PostContainer'
 import { Post } from '@/components/interfaces/Post'
 
+import LoadingTubeSpinner from '../../public/loading-tube-spinner.svg'
+
 export default function Home() {
   const { data, error, loading, fetchMore } = useQuery(GET_HOME_FEED, {
     variables: { limit: 5, cursor: null }
@@ -60,7 +62,7 @@ export default function Home() {
       <Header />
       <PostContainer posts={posts} />
       <div ref={loader} className='h-fit'>
-        {(nextCursor || loading) && 'Loading...'}
+        {(nextCursor || loading) && <img src={LoadingTubeSpinner.src} width={40}/>}
       </div>
     </div>
   )
