@@ -1,4 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
+
 import { RootState } from '@/store'
 import { toggleTheme } from '@/store/slices/appSlice'
 
@@ -30,12 +32,14 @@ export default function HeaderDropdown() {
     const appState = useSelector((state: RootState) => state.app)
     const dispatch = useDispatch()
 
+    const router = useRouter()
+
     return(
         <div className='absolute right-0 w-max bg-default-bg rounded-lg overflow-hidden shadow-lg z-20 flex flex-col'>
             <DropdownEl 
                 icon={<img src={PlaceholderProfileIcon.src} width={24} alt='Profile' className='rounded-full' />}
                 label='Profile'
-                func={() => {}}
+                func={() => { router.push('/user/you') }}
             />
             <DropdownEl 
                 icon={appState.theme === 'light' ? <CiLight size={24} /> : <CiDark size={24} />}
