@@ -12,9 +12,9 @@ function Tags({ tags, display }: TagsInterface) {
     return (
         <div className='relative max-w-full overflow-hidden'>
             <div className={`flex flex-row gap-1 px-1 ${short ? 'whitespace-nowrap' : 'flex-wrap'}`}>
-                {tags.map((tag) => (
+                {tags.map((tag, idx) => (
                     <Link
-                        key={tag}
+                        key={`${tag}-${idx}`}
                         className='text-xs bg-secondary-bg text-secondary-fg rounded-sm p-1 px-2'
                         href={`/search?tag=${encodeURIComponent(tag)}`}
                         onClick={e => e.stopPropagation()}
