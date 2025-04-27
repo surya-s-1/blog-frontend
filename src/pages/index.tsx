@@ -1,31 +1,39 @@
-import { useEffect, useState } from 'react'
-import { useQuery } from '@apollo/client'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/store'
+import { useLazyQuery } from '@apollo/client'
 import { GET_HOME_FEED } from '@/gql/queries'
 
 import Frame from '@/components/container/Frame'
 import PostContainer from '@/components/container/PostContainer'
-import { Post } from '@/components/interfaces/Post'
 
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
+import { appendHomeFeed, replaceHomeFeed } from '@/store/slices/appSlice'
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [nextCursor, setNextCursor] = useState<string | null>(null)
+  const posts = useSelector((state: RootState) => state.app.homeFeed.posts)
+  const nextCursor = useSelector((state: RootState) => state.app.homeFeed.nextCursor)
 
-  const { data, error, loading, fetchMore } = useQuery(GET_HOME_FEED, {
-    variables: { limit: 5, cursor: null }
-  })
+  const dispatch = useDispatch()
+
+  const [getHomeFeed, { data, loading, called, error, fetchMore }] = useLazyQuery(GET_HOME_FEED)
+
+  useEffect(() => {
+    console.log('posts', posts)
+    if (posts.length === 0) {
+      getHomeFeed({ variables: { limit: 7, cursor: null } })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (data?.getHomeFeed) {
+      dispatch(appendHomeFeed({ ...data.getHomeFeed }))
+    }
+  }, [data])
 
   if (error) {
     console.error(error)
   }
-
-  useEffect(() => {
-    if (data?.getHomeFeed) {
-      setPosts(prev => [...prev, ...data.getHomeFeed.posts])
-      setNextCursor(data.getHomeFeed.nextCursor)
-    }
-  }, [data])
 
   async function handleLoadMore() {
     if (!nextCursor) return
@@ -34,15 +42,14 @@ export default function Home() {
       variables: { limit: 5, cursor: nextCursor }
     })
 
-    setPosts(prev => [...prev, ...more.data.getHomeFeed.posts])
-    setNextCursor(more.data.getHomeFeed.nextCursor)
+    dispatch(appendHomeFeed({ ...more.data.getHomeFeed }))
   }
 
   const [loadMoreRef] = useInfiniteScroll(handleLoadMore, nextCursor, loading)
 
   return (
     <Frame
-      middle={<PostContainer posts={posts} showLoader={loading || !!nextCursor} loadMoreRef={loadMoreRef} />}
+      middle={<PostContainer posts={posts} showLoader={(called && loading) || !!nextCursor} loadMoreRef={loadMoreRef} />}
     />
   )
 }
