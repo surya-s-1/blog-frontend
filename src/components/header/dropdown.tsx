@@ -35,7 +35,7 @@ export default function HeaderDropdown() {
     const router = useRouter()
 
     return(
-        <div className='absolute right-0 w-max bg-default-bg rounded-lg overflow-hidden shadow-lg z-20 flex flex-col'>
+        <div className='absolute right-4 w-max bg-default-bg rounded-lg overflow-hidden shadow-lg z-20 flex flex-col'>
             <DropdownEl 
                 icon={<img src={PlaceholderProfileIcon.src} width={24} alt='Profile' className='rounded-full' />}
                 label='Profile'
