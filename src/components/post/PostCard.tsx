@@ -39,7 +39,7 @@ export default function PostCard({ post, display }: PostCardInterface) {
 
         return (
             <div
-                className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 cursor-pointer flex flex-col gap-1'
+                className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 flex flex-col gap-1 cursor-alias'
                 onClick={() => { router.push(`/post/${post.postId}`) }}
             >
                 <Metadata

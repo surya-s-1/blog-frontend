@@ -41,6 +41,14 @@
     --color-secondary-fg: var(--secondary-fg);
     --color-danger-fg: var(--danger-fg);
     --color-warn-fg: var(--warn-fg);
+    --color-default-bg-inverse: var(--default-fg);
+    --color-default-fg-inverse: var(--default-bg);
+}
+
+@layer components {
+    .button-default-inverse {
+        @apply p-1 px-3 text-xs text-default-fg-inverse bg-default-bg-inverse rounded-2xl cursor-pointer;
+    }
 }
 
 body {

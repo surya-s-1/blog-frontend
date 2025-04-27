@@ -26,7 +26,7 @@ export default function Home() {
 
   useEffect(() => {
     if (data?.getHomeFeed) {
-      dispatch(appendHomeFeed({ ...data.getHomeFeed }))
+      dispatch(replaceHomeFeed({ ...data.getHomeFeed }))
     }
   }, [data])
 
@@ -37,18 +37,39 @@ export default function Home() {
   async function handleLoadMore() {
     if (!nextCursor) return
 
-    const more = await fetchMore({
+    const { data, error } = await fetchMore({
       variables: { limit: 5, cursor: nextCursor }
     })
 
-    dispatch(appendHomeFeed({ ...more.data.getHomeFeed }))
+    if (data) {
+      dispatch(appendHomeFeed({ ...data.getHomeFeed }))
+    } else {
+      console.error('Error while fetching more:', error)
+    }
   }
 
   const [loadMoreRef] = useInfiniteScroll(handleLoadMore, nextCursor, loading)
 
   return (
-    <Frame
-      middle={<PostContainer posts={posts} showLoader={(called && loading) || !!nextCursor} loadMoreRef={loadMoreRef} />}
-    />
+    <>
+      <Frame
+        middle={
+        <>
+        <button
+          className='sticky top-18 z-10 mx-auto block button-default-inverse'
+          onClick={() => getHomeFeed({ variables: { limit: 7, cursor: null } })}
+          disabled={loading}
+        >
+          {loading ? 'Refreshing...' : 'Refresh Feed'}
+        </button>
+        <PostContainer 
+          posts={posts} 
+          showLoader={(called && loading) || !!nextCursor} 
+          loadMoreRef={loadMoreRef} 
+        />
+        </>
+        }
+      />
+    </>
   )
 }
