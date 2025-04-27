@@ -19,7 +19,6 @@ export default function Home() {
   const [getHomeFeed, { data, loading, called, error, fetchMore }] = useLazyQuery(GET_HOME_FEED)
 
   useEffect(() => {
-    console.log('posts', posts)
     if (posts.length === 0) {
       getHomeFeed({ variables: { limit: 7, cursor: null } })
     }
