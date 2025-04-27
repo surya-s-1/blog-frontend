@@ -39,7 +39,7 @@ export default function HeaderDropdown() {
             <DropdownEl 
                 icon={<img src={PlaceholderProfileIcon.src} width={24} alt='Profile' className='rounded-full' />}
                 label='Profile'
-                func={() => { router.push('/user/you') }}
+                func={() => { router.push('/you') }}
             />
             <DropdownEl 
                 icon={appState.theme === 'light' ? <CiLight size={24} /> : <CiDark size={24} />}
