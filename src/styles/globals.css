@@ -13,6 +13,7 @@
     --danger-fg: #750000;
     --warn-bg: #dac100;
     --warn-fg: #f1d500;
+    --dull-fg: #707070;
 }
 
 .dark {
@@ -26,6 +27,7 @@
     --danger-fg: #ff0000;
     --warn-bg: #af9b00;
     --warn-fg: #c6af00;
+    --dull-fg: #a9a9a9;
 }
 
 @theme inline {
@@ -43,11 +45,12 @@
     --color-warn-fg: var(--warn-fg);
     --color-default-bg-inverse: var(--default-fg);
     --color-default-fg-inverse: var(--default-bg);
+    --color-dull-fg: var(--dull-fg);
 }
 
 @layer components {
-    .button-default-inverse {
-        @apply p-1 px-3 text-xs text-default-fg-inverse bg-default-bg-inverse rounded-2xl cursor-pointer;
+    .button-dull {
+        @apply p-1 px-3 m-1 text-xs text-dull-fg font-semibold rounded-md cursor-pointer flex flex-row gap-1 items-center;
     }
 }
 
