@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { useLazyQuery } from '@apollo/client'
@@ -8,25 +8,22 @@ import Frame from '@/components/container/Frame'
 import PostContainer from '@/components/container/PostContainer'
 
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
-import { appendHomeFeed, replaceHomeFeed } from '@/store/slices/appSlice'
+import { Post } from '@/components/interfaces/Post'
 
 export default function Home() {
-  const posts = useSelector((state: RootState) => state.app.homeFeed.posts)
-  const nextCursor = useSelector((state: RootState) => state.app.homeFeed.nextCursor)
-
-  const dispatch = useDispatch()
+  const [posts, setPosts] = useState<Post[]>([])
+  const [nextCursor, setNextCursor] = useState<string | Date | null>(null)
 
   const [getHomeFeed, { data, loading, called, error, fetchMore }] = useLazyQuery(GET_HOME_FEED)
 
   useEffect(() => {
-    if (posts.length === 0) {
-      getHomeFeed({ variables: { limit: 7, cursor: null } })
-    }
+    getHomeFeed({ variables: { limit: 7, cursor: null } })
   }, [])
 
   useEffect(() => {
-    if (data?.getHomeFeed) {
-      dispatch(replaceHomeFeed({ ...data.getHomeFeed }))
+    if (data) {
+      setPosts(data.getHomeFeed.posts)
+      setNextCursor(data.getHomeFeed.nextCursor)
     }
   }, [data])
 
@@ -42,7 +39,8 @@ export default function Home() {
     })
 
     if (data) {
-      dispatch(appendHomeFeed({ ...data.getHomeFeed }))
+      setPosts((prev) => [...prev, ...data.getHomeFeed.posts])
+      setNextCursor(data.getHomeFeed.nextCursor)
     } else {
       console.error('Error while fetching more:', error)
     }
@@ -54,20 +52,11 @@ export default function Home() {
     <>
       <Frame
         middle={
-        <>
-        <button
-          className='sticky top-18 z-10 mx-auto block button-default-inverse'
-          onClick={() => getHomeFeed({ variables: { limit: 7, cursor: null } })}
-          disabled={loading}
-        >
-          {loading ? 'Refreshing...' : 'Refresh Feed'}
-        </button>
         <PostContainer 
           posts={posts} 
           showLoader={(called && loading) || !!nextCursor} 
           loadMoreRef={loadMoreRef} 
         />
-        </>
         }
       />
     </>
