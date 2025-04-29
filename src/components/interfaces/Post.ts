@@ -4,7 +4,6 @@ export interface Post {
     tags: Array<string>,
     createdAt: string,
     public: boolean,
-    userId: string | null,
     username: string | null,
     firstName: string | null,
     middleName: string | null,

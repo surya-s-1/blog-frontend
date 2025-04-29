@@ -9,7 +9,6 @@ export const GET_HOME_FEED = gql`
                 tags
                 createdAt
                 public
-                userId
                 username
                 firstName
                 middleName
@@ -29,7 +28,6 @@ export const GET_POST = gql`
             tags
             createdAt
             public
-            userId
             username
             firstName
             middleName
