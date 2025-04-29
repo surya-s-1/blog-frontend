@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/store'
+import { useState } from 'react'
+import { ssrApolloClient } from '@/../../apollo-client'
 import { useLazyQuery } from '@apollo/client'
 import { GET_HOME_FEED } from '@/gql/queries'
 
@@ -9,32 +8,50 @@ import PostContainer from '@/components/container/PostContainer'
 
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 import { Post } from '@/components/interfaces/Post'
+import { InferGetServerSidePropsType } from 'next'
 
-export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [nextCursor, setNextCursor] = useState<string | Date | null>(null)
+export const getServerSideProps = async () => {
+  try {
+      const { data, error } = await ssrApolloClient.query({
+          query: GET_HOME_FEED,
+          variables: { limit: 7, nextCursor: null }
+      })
 
-  const [getHomeFeed, { data, loading, called, error, fetchMore }] = useLazyQuery(GET_HOME_FEED)
+      if (error) {
+          console.error(error)
+          throw new Error(error?.message)
+      }
 
-  useEffect(() => {
-    getHomeFeed({ variables: { limit: 7, cursor: null } })
-  }, [])
+      return {
+          props: {
+              posts: data.getHomeFeed.posts as Post[],
+              nextCursor: data.getHomeFeed.nextCursor as string | Date | null,
+              error: null
+          }
+      }
+  } catch (err) {
+      console.error(err)
 
-  useEffect(() => {
-    if (data) {
-      setPosts(data.getHomeFeed.posts)
-      setNextCursor(data.getHomeFeed.nextCursor)
-    }
-  }, [data])
-
-  if (error) {
-    console.error(error)
+      return {
+          props: {
+              posts: [],
+              nextCursor: null,
+              error: 'Failed to fetch home feed'
+          }
+      }
   }
+}
+
+export default function Home({ posts: initialPosts, nextCursor: initialCursor, error: initialError }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [posts, setPosts] = useState<Post[]>(initialPosts)
+  const [nextCursor, setNextCursor] = useState<string | Date | null>(initialCursor)
+
+  const [getHomeFeed, { loading }] = useLazyQuery(GET_HOME_FEED)
 
   async function handleLoadMore() {
     if (!nextCursor) return
 
-    const { data, error } = await fetchMore({
+    const { data, error } = await getHomeFeed({
       variables: { limit: 5, cursor: nextCursor }
     })
 
@@ -49,16 +66,14 @@ export default function Home() {
   const [loadMoreRef] = useInfiniteScroll(handleLoadMore, nextCursor, loading)
 
   return (
-    <>
       <Frame
         middle={
         <PostContainer 
           posts={posts} 
-          showLoader={(called && loading) || !!nextCursor} 
+          showLoader={!!nextCursor} 
           loadMoreRef={loadMoreRef} 
         />
         }
       />
-    </>
   )
 }

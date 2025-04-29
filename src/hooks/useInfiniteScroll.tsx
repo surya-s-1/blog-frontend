@@ -19,7 +19,7 @@ export function useInfiniteScroll(
           handleLoadMore()
         }
       },
-      { threshold: 0.75 }
+      { threshold: 0.5 }
     )
 
     if (loadMoreRef.current) observerRef.current.observe(loadMoreRef.current)
@@ -27,7 +27,7 @@ export function useInfiniteScroll(
     return () => {
       if (loadMoreRef.current && observerRef.current) observerRef.current.unobserve(loadMoreRef.current)
     }
-  }, [loadMoreRef.current, nextCursor, loading])
+  }, [nextCursor])
 
   return [loadMoreRef]
 }
