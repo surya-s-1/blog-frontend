@@ -1,11 +1,11 @@
-import { InferGetServerSidePropsType, GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { InferGetServerSidePropsType, GetServerSidePropsContext } from 'next'
 
-import TubeSpinnerLoader from '@/components/TubeSpinnerLoader'
+import Frame from '@/components/container/Frame'
 import PostCard from '@/components/post/PostCard'
 import { Post } from '@/components/interfaces/Post'
+
 import { GET_POST } from '@/gql/queries'
-import { ssrApolloClient } from '../../../apollo-client'
-import Frame from '@/components/container/Frame'
+import { ssrApolloClient } from '@/../../apollo-client'
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     try {
