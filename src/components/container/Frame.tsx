@@ -13,6 +13,7 @@ interface FrameProps {
 
 export default function Frame({ left, middle, right, width = { left: 30, middle: 40, right: 30 }}: FrameProps) {
     return (
+        <>
         <div className='flex flex-row w-full min-h-screen bg-primary-bg'>
             <div style={{ width: `${width.left}%` }}>
                 {left ?? null}
@@ -24,5 +25,6 @@ export default function Frame({ left, middle, right, width = { left: 30, middle:
                 {right ?? null}
             </div>
         </div>
+        </>
     )
 }

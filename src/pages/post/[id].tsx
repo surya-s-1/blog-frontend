@@ -1,7 +1,7 @@
 import { InferGetServerSidePropsType, GetServerSidePropsContext } from 'next'
 
 import Frame from '@/components/container/Frame'
-import PostCard from '@/components/post/PostCard'
+import { ExpandedPostCard } from '@/components/post/PostCard'
 import { Post } from '@/components/interfaces/Post'
 
 import { GET_POST } from '@/gql/queries'
@@ -44,7 +44,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 export default function PostDetail({ post, error }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     if (post) {
         return(
-            <Frame middle={<PostCard post={post} display='long' />} width={{ left: 20, middle: 60, right: 20}} />
+            <Frame middle={<ExpandedPostCard post={post} />} width={{ left: 20, middle: 60, right: 20}} />
         )
     } else {
         return(

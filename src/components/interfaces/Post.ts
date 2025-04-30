@@ -14,7 +14,10 @@ export interface Post {
 
 export interface PostCardInterface {
     post: Post
-    display: 'short' | 'long'
+}
+
+export interface ShortPostCardInterface extends PostCardInterface {
+    onClick: (e: string) => void
 }
 
 export interface MetadataInterface {

@@ -9,6 +9,7 @@ import PostContainer from '@/components/container/PostContainer'
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 import { Post } from '@/components/interfaces/Post'
 import { InferGetServerSidePropsType } from 'next'
+import Modal from '@/components/post/Modal'
 
 export const getServerSideProps = async () => {
   try {
@@ -66,6 +67,7 @@ export default function Home({ posts: initialPosts, nextCursor: initialCursor, e
   const [loadMoreRef] = useInfiniteScroll(handleLoadMore, nextCursor, loading)
 
   return (
+      <>
       <Frame
         middle={
         <PostContainer 
@@ -75,5 +77,7 @@ export default function Home({ posts: initialPosts, nextCursor: initialCursor, e
         />
         }
       />
+      <Modal />
+      </>
   )
 }
