@@ -44,7 +44,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 export default function PostDetail({ post, error }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     if (post) {
         return(
-            <Frame middle={<ExpandedPostCard post={post} />} width={{ left: 20, middle: 60, right: 20}} />
+            <Frame middle={<div className='my-4'><ExpandedPostCard post={post} /></div>} width={{ left: 20, middle: 60, right: 20}} />
         )
     } else {
         return(

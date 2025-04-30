@@ -9,7 +9,7 @@ import PostContainer from '@/components/container/PostContainer'
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 import { Post } from '@/components/interfaces/Post'
 import { InferGetServerSidePropsType } from 'next'
-import Modal from '@/components/post/Modal'
+import Modal from '@/components/container/Modal'
 
 export const getServerSideProps = async () => {
   try {

@@ -5,8 +5,7 @@ import { setPostModal } from '@/store/slices/appSlice'
 
 import { usePosts } from '@/hooks/posts'
 
-import { ExpandedPostCard } from './PostCard'
-import { Post } from '../interfaces/Post'
+import { ExpandedPostCard } from '@/components/post/PostCard'
 import TubeSpinnerLoader from '../TubeSpinnerLoader'
 
 export default function Modal() {
