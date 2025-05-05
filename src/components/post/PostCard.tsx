@@ -80,7 +80,7 @@ export function ExpandedPostCard({ post }: PostCardInterface) {
                 />
                 <button className='button-dull text-lg'><FaShare size={20} /> Share</button>
             </div>
-            <div className='p-2'>{post.content}</div>
+            <pre className='p-2 text-wrap font-sans'>{post.content}</pre>
             <Tags tags={post.tags} display='long' />
         </div>
     )
