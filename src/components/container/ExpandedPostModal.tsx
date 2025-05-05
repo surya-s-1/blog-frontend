@@ -8,7 +8,7 @@ import { usePosts } from '@/hooks/posts'
 import { ExpandedPostCard } from '@/components/post/PostCard'
 import TubeSpinnerLoader from '../TubeSpinnerLoader'
 
-export default function Modal() {
+export default function ExpandedPostModal() {
     const modal = useSelector((state: RootState) => state.app.modal)
     const dispatch = useDispatch()
 

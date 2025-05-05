@@ -9,7 +9,7 @@ import PostContainer from '@/components/container/PostContainer'
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 import { Post } from '@/components/interfaces/Post'
 import { InferGetServerSidePropsType } from 'next'
-import Modal from '@/components/container/Modal'
+import ExpandedPostModal from '@/components/container/ExpandedPostModal'
 
 export const getServerSideProps = async () => {
   try {
@@ -77,7 +77,7 @@ export default function Home({ posts: initialPosts, nextCursor: initialCursor, e
         />
         }
       />
-      <Modal />
+      <ExpandedPostModal />
       </>
   )
 }
