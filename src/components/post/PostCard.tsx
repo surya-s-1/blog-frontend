@@ -41,7 +41,7 @@ export function ShortPostCard({ post }: PostCardInterface) {
 
     return (
         <div
-            className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 flex flex-col gap-1 cursor-pointer'
+            className='w-full h-fit bg-primary-bg hover:bg-primary-bg-dull rounded-lg p-2 m-2 flex flex-col gap-1 cursor-pointer'
             onClick={() => { 
                 console.log('dispatching...', post.postId)
                 dispath(setPostModal(post.postId)) 
@@ -67,7 +67,7 @@ export function ShortPostCard({ post }: PostCardInterface) {
 
 export function ExpandedPostCard({ post }: PostCardInterface) {
     return (
-        <div className='w-full h-fit bg-default-bg rounded-lg p-4 pb-6 m-0 flex flex-col gap-1'>
+        <div className='w-full h-fit bg-primary-bg rounded-lg p-4 pb-6 m-0 flex flex-col gap-1'>
             <div className='w-full flex flex-row items-center justify-between'>
                 <Metadata
                     firstName={post.firstName}

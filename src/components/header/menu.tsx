@@ -56,7 +56,7 @@ export default function MiddleSection() {
                     />
                 </div>
             ) : (
-                <div className='flex items-center w-full h-full rounded-md px-4 shadow-sm bg-secondary-bg text-secondary-fg'>
+                <div className='flex items-center w-full h-full rounded-md px-4 shadow-sm bg-default-bg text-default-fg'>
                     <input
                         type='text'
                         placeholder='Search...'

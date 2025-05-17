@@ -3,32 +3,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-    --default-bg: #ffffff;
-    --default-fg: #171717;
-    --primary-bg: #f0f0f0;
-    --secondary-bg: #e8e8e8;
-    --primary-fg: #111111;
-    --secondary-fg: #2b2b2b;
-    --danger-bg: #ff0000;
-    --danger-fg: #750000;
-    --warn-bg: #dac100;
-    --warn-fg: #f1d500;
-    --dull-fg: #707070;
+    --default-bg: #f5f6f7;
+    --default-fg: #050505;
+    --primary-bg: #ffffff;
+    --primary-bg-dull: #f6f6f6;
+    --secondary-bg: #e4e6eb;
+    --secondary-bg-dull: #e4e6ee;
+    --primary-fg: #1c1e21;
+    --secondary-fg: #65676b;
+    --danger-bg: #f02849;
+    --danger-fg: #b00020;
+    --warn-bg: #f7b928;
+    --warn-fg: #c77c02;
+    --dull-fg: #8d949e;
 }
 
 .dark {
-    --default-bg: #292929;
-    --default-fg: #f1f1f1;
-    --primary-bg: #1c1c1c;
-    --secondary-bg: #4a4a4a;
-    --primary-fg: #ededed;
-    --secondary-fg: #d0d0d0;
-    --danger-bg: #750000;
-    --danger-fg: #ff0000;
-    --warn-bg: #af9b00;
-    --warn-fg: #c6af00;
-    --dull-fg: #a9a9a9;
+    --default-bg: #18191a;
+    --default-fg: #e4e6eb;
+    --primary-bg: #242526;
+    --primary-bg-dull: #2b2c2e;
+    --secondary-bg: #3a3b3c;
+    --secondary-bg-dull: #3a3838;
+    --primary-fg: #e4e6eb;
+    --secondary-fg: #b0b3b8;
+    --danger-bg: #b00020;
+    --danger-fg: #f02849;
+    --warn-bg: #c77c02;
+    --warn-fg: #f7b928;
+    --dull-fg: #8a8d91;
 }
+
 
 @theme inline {
     --color-default-bg: var(--default-bg);
@@ -36,7 +41,9 @@
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
     --color-primary-bg: var(--primary-bg);
+    --color-primary-bg-dull: var(--primary-bg-dull);
     --color-secondary-bg: var(--secondary-bg);
+    --color-secondary-bg-dull: var(--secondary-bg-dull);
     --color-danger-bg: var(--danger-bg);
     --color-warn-bg: var(--warn-bg);
     --color-primary-fg: var(--primary-fg);
@@ -58,7 +65,7 @@
         color: var(--default-fg);
         font-family: Arial, Helvetica, sans-serif;
     }
-    
+
     .scrollbar-hide {
         scrollbar-width: thin;
         scrollbar-color: var(--default-bg) transparent;

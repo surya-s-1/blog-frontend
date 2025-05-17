@@ -35,7 +35,7 @@ export default function WriteNew() {
     }, [error])
 
     return (
-        <div className='w-full h-fit bg-default-bg rounded-lg p-4 m-2'>
+        <div className='w-full h-fit bg-primary-bg hover:bg-primary-bg-dull rounded-lg p-4 m-2'>
                 <div 
                     className='flex flex-row items-center justify-start gap-4 cursor-pointer mb-2'
                     onClick={() => setVisible(!visible)}
