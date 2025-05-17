@@ -36,3 +36,20 @@ export const GET_POST = gql`
         }
     }
 `
+
+export const CREATE_POST = gql`
+    mutation CreatePost($content: String!, $tags: [String!]!, $public: Boolean!) {
+        createPost(content: $content, tags: $tags, public: $public) {
+            postId
+            content
+            tags
+            createdAt
+            public
+            username
+            firstName
+            middleName
+            lastName
+            dp
+        }
+    }
+`

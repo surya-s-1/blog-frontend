@@ -41,7 +41,7 @@ export function ShortPostCard({ post }: PostCardInterface) {
 
     return (
         <div
-            className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 flex flex-col gap-1 cursor-alias'
+            className='w-full h-fit bg-default-bg rounded-lg p-2 m-2 flex flex-col gap-1 cursor-pointer'
             onClick={() => { 
                 console.log('dispatching...', post.postId)
                 dispath(setPostModal(post.postId)) 

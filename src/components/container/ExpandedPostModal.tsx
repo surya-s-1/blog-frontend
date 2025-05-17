@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { setPostModal } from '@/store/slices/appSlice'
 
-import { usePosts } from '@/hooks/posts'
+import { usePosts } from '@/hooks/usePosts'
 
 import { ExpandedPostCard } from '@/components/post/PostCard'
 import TubeSpinnerLoader from '../TubeSpinnerLoader'

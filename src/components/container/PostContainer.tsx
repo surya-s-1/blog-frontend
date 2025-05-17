@@ -3,6 +3,7 @@ import { Ref } from 'react'
 import { ShortPostCard } from '@/components/post/PostCard'
 import TubeSpinnerLoader from '@/components/TubeSpinnerLoader'
 import { Post } from '@/components/interfaces/Post'
+import WriteNew from '../post/WriteNew'
 
 interface PostContainerInterface {
     posts: Post[]
@@ -13,6 +14,7 @@ interface PostContainerInterface {
 export default function PostContainer({ posts, showLoader, loadMoreRef }: PostContainerInterface) {
     return(
         <div>
+            <WriteNew />
             {posts.map((post) => {
                 return <ShortPostCard key={post.postId} post={post} />
             })}
